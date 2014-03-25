@@ -1,0 +1,13 @@
+{
+  "name": "proyecto",
+  "version": "0.0.0",
+  "authors": [
+    "Alejandro M. <alejandro.maggi@hotmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "underscore": "~1.6.0",
+    "backbone": "~1.1.2"
+  }
+}

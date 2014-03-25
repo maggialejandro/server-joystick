@@ -1,0 +1,6 @@
+node_modules
+.tmp
+app/bower_components
+heroku
+dist
+npm-debug.log
