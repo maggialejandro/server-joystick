@@ -4,16 +4,23 @@ define(["backbone", "models/ship", "vector2"], function(Backbone, ShipModel, Vec
       initialize: function(coordenadas){
         this.model = new ShipModel();
 
+        //Posicion del joystick
+        this.leftVector = new Vector2({x: 0, y: 0});
+
         this.pos = new Vector2(coordenadas);
         this.vel = new Vector2({x: 0, y: 0});
         this.targetVel = new Vector2({x: 0, y: 0});
         this.temp = new Vector2({x: 0, y: 0});
 
+        this.model.set({
+          color: '#'+(Math.random()*0xFFFFFF<<0).toString(16)
+        });
+
         this.canvas = document.createElement("canvas");
 
         this.canvas.width = 60;
         this.canvas.height = 60;
-        this.canvas.style = "display:block; position:absolute; background-color:'#ff0000';";
+        this.canvas.style = "display:block; position:absolute; background-color:'red';";
 
         this.canvas.style.webkitTransformOrigin = "30px 30px";
         this.canvas.style.MozTransformOrigin = "30px 30px";
@@ -21,16 +28,11 @@ define(["backbone", "models/ship", "vector2"], function(Backbone, ShipModel, Vec
         this.canvas.style.transformOrigin = "30px 30px";
 
         this.context = this.canvas.getContext( '2d' );
-
-      },
-      initEvents: function(){
-        var that = this;
-
-        window.socket.on('shoot', function(data){
-          that.trigger('shoot');
-        });
       },
       update: function(){
+        this.targetVel.copyFrom(this.leftVector);
+        this.targetVel.multiplyEq(0.2);
+
         //speed limit
         var maxSpeed = 30;
 
@@ -68,7 +70,7 @@ define(["backbone", "models/ship", "vector2"], function(Backbone, ShipModel, Vec
         this.context.save();
         this.context.translate(30, 30);
 
-        this.context.strokeStyle = "#fff";
+        this.context.strokeStyle = this.model.get('color');
         this.context.lineWidth = 2;
 
         this.context.beginPath();

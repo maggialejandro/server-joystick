@@ -42,7 +42,7 @@ define([
         context.lineWidth =2;
         context.strokeStyle = "#fff";
         context.beginPath();
-        context.arc(this.pos.get('x'),this.pos.get('y'),2, 0, Math.PI*2, true);
+        context.arc(this.pos.get('x'), this.pos.get('y'), 2, 0, Math.PI*2, true);
         context.stroke();
 
       }

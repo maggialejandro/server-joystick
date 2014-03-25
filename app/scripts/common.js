@@ -20,6 +20,7 @@ requirejs.config({
     'bootstrap' : '../bower_components/dist/js/bootstrap',
     'text': 'libs/text',
     "vector2" : "libs/vector2",
-    "socketio" : "libs/socket-io"
+    "socketio" : "libs/socket-io",
+    "ratchet" : "libs/ratchet"
   }
 });
