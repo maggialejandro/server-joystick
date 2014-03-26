@@ -34,7 +34,7 @@ define(["backbone", "models/ship", "vector2"], function(Backbone, ShipModel, Vec
         this.targetVel.multiplyEq(0.2);
 
         //speed limit
-        var maxSpeed = 30;
+        var maxSpeed = 8;
 
         if(this.targetVel.isMagGreaterThan(maxSpeed)){
           this.targetVel.normalise();

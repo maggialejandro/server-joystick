@@ -124,7 +124,7 @@ define([
           this.jugadores.each(function(jugador){
             heightPos+=20;
             that.context.fillStyle = jugador.get("color");
-            that.context.fillText(jugador.get("nombre"), 20, heightPos);
+            that.context.fillText(jugador.get("nombre")+' '+jugador.get('score'), 20, heightPos);
           });
         },
         drawShips: function(){
@@ -147,12 +147,28 @@ define([
           })
         },
         drawBullets: function(){
+          var that = this;
+
           for (var i = 0; i < this.bullets.length; i++) {
             var bullet = this.bullets[i];
 
             if(!bullet.model.get('enabled')) continue;
 
             bullet.update();
+
+            _.each(that.ships, function(ship){
+              var jugador_id = ship.model.get('jugador_id');
+              if(ship.pos.isCloseTo(bullet.pos, 20) && bullet.model.get('jugador_id') != jugador_id){
+                //Respawn loser ship
+                ship.pos.reset({x: that.model.get('halfWidth'), y: that.model.get('halfHeight')});
+                var perdedor = that.jugadores.findWhere({id: jugador_id});
+                perdedor.restarHit();
+                //Count hit
+                var ganador = that.jugadores.findWhere({id: bullet.model.get('jugador_id')});
+                ganador.sumarHit();
+              }
+            });
+
             //si la posicion esta dentro del rango de la nave
             //no tendria que dibujarla y tendria que destruir la nave
             //cuando la nave se destruye aumentar contador y volver a respawnear
@@ -189,6 +205,7 @@ define([
           }
 
           bullet.vel.plusEq(ship.vel);
+          bullet.model.set({jugador_id: ship.model.get('jugador_id')});
       }
 
 

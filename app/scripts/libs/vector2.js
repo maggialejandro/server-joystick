@@ -83,21 +83,21 @@ define(["backbone"], function(Backbone) {
     isCloseTo: function (v, tolerance) {
       if(this.equals(v)) return true;
 
-      App.models.Vector2Const.temp.copyFrom(this);
-      App.models.Vector2Const.temp.minusEq(v);
+      window.tempVector.copyFrom(this);
+      window.tempVector.minusEq(v);
 
-      return(App.models.Vector2Const.temp.magnitudeSquared() < tolerance*tolerance);
+      return(window.tempVector.magnitudeSquared() < tolerance*tolerance);
     },
     rotateAroundPoint: function (point, angle, useRadians) {
-      App.models.Vector2Const.temp.copyFrom(this);
+      window.tempVector.copyFrom(this);
       //trace("rotate around point "+t+" "+point+" " +angle);
-      App.models.Vector2Const.temp.minusEq(point);
+      window.tempVector.minusEq(point);
       //trace("after subtract "+t);
-      App.models.Vector2Const.temp.rotate(angle, useRadians);
+      window.tempVector.rotate(angle, useRadians);
       //trace("after rotate "+t);
-      App.models.Vector2Const.temp.plusEq(point);
+      window.tempVector.plusEq(point);
       //trace("after add "+t);
-      this.copyFrom(App.models.Vector2Const.temp);
+      this.copyFrom(window.tempVector);
     },
     isMagLessThan: function (distance) {
       return(this.magnitudeSquared()<distance*distance);
