@@ -11,6 +11,12 @@ var express = require('express'),
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+// Mongo
+var mongodb = require('./lib/db/mongo');
+
+// Passport Configuration
+var passport = require('./lib/config/passport');
+
 var app = express();
 
 // Express settings
