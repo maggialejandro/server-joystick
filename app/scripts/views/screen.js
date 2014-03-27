@@ -50,7 +50,8 @@ define([
 
             jugador.set({
               id: data.jugador_id,
-              color: shipView.model.get('color')
+              color: shipView.model.get('color'),
+              nombre: data.nombre
             });
 
             that.jugadores.add(jugador);
