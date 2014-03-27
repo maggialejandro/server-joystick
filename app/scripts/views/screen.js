@@ -50,9 +50,11 @@ define([
 
             jugador.set({
               id: data.jugador_id,
-              color: shipView.model.get('color'),
-              nombre: data.nombre
+              color: shipView.model.get('color')
             });
+
+            if(data.nombre)
+              jugador.set({nombre: data.nombre})
 
             that.jugadores.add(jugador);
           });
@@ -82,7 +84,7 @@ define([
             if(jugador) that.jugadores.remove(jugador);
           });
 
-          setInterval(this.draw, 1000/60);
+          setInterval(this.draw, 1000/100);
         },
         resetCanvas: function(event){
           //BUG: al dar vuelta la pantalla this no es esta vista sino window
