@@ -38,7 +38,7 @@ define(["backbone"], function(Backbone) {
       this.reset({x: this.get('x')*scalar, y: this.get('y')*scalar});
     },
     divideEq: function (scalar) {
-      this.reset({x: this.get('x')/=scalar, y: this.get('y')/=scalar});
+      this.reset({x: (this.get('x') / scalar), y: (this.get('y') / scalar)});
     },
     angle: function (useRadians) {
       return Math.atan2(this.get('y'),this.get('x')) * (useRadians ? 1 : this.get('TO_DEGREES'));

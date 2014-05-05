@@ -9,7 +9,7 @@ define([
         'usuarios' : 'usuarios'
       },
       initialize: function(){
-        window.socket = io.connect('http://192.168.1.233:9000');
+        window.socket = io.connect('ws://server-alejandrojs.rhcloud.com:8000/');
         window.socket.emit('terminalConectado', {});
         this.screenView = new ScreenView();
         Backbone.history.start();
